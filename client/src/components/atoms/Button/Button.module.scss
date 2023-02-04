@@ -1,0 +1,55 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+@import '~styles/themes/dark';
+@import '~styles/themes/light';
+
+.button {
+    padding: $size-mini;
+    color: var(--text-button-neutral);
+    background-color: var(--button-bg-primary);
+    border: 1px solid transparent;
+    border-radius: $border-radius-small;
+    font-weight: $font-weight-bold;
+    @include transition(all);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--text-button-primary);
+        border: 1px solid var(--button-border-primary);
+        background-color: transparent;
+        @include transition(all);
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    &.without-border {
+        border: 1px solid transparent;
+
+        &:hover {
+            border: 1px solid transparent;
+        }
+    }
+
+    &.secondary {
+        color: var(--text-button-secondary);
+        background-color: transparent;
+        border: 1px solid var(--button-border-secondary);
+
+        &:hover {
+            color: var(--text-button-primary);
+            border: 1px solid var(--button-border-primary);
+            background-color: transparent;
+            @include transition(all);
+        }
+    }
+
+    .warning {
+
+    }
+
+    .notification {
+
+    }
+}

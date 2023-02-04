@@ -1,0 +1,25 @@
+@import '~styles/variables';
+
+.login {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    width: 100%;    
+    margin-bottom: $size-medium;
+}
+
+.input {
+    margin-bottom: $size-medium;
+
+    &-last {
+        margin-bottom: $size-xx-large;
+    }
+}
+
+.error {
+    font-size: $secondary-font-size;
+    color: $color-error;
+}

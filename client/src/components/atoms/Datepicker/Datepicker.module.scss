@@ -1,0 +1,30 @@
+@import '~styles/variables';
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 100%;
+}
+
+.label {
+    display: block;
+    margin-bottom: $size-tiny;
+}
+
+.datepicker {
+    border-radius: $border-radius-small;
+}
+
+.error {
+    position: absolute;
+    margin-top: $size-raff;
+    font-size: $secondary-font-size;
+    color: $color-error;
+
+    &-container {
+        height: 0;
+        position: relative;
+    }
+}

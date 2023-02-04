@@ -1,0 +1,56 @@
+@import '~styles/variables';
+
+:root.light {
+    // Main
+    --primary: #{$light};
+    --primary-faded: #{$light};
+    // --secondary: #{$color-sail};
+    // --secondary-light: #{rgba($color-sail, 0.8)};
+    // --error: #{$color-error};
+    // --success: #{$color-success};
+
+    // Text
+    --text-main: #{$dark-faded-4};
+    --text-main-hover: #{$color-sky};
+    // --text-dark: #{$color-mine-shaft};
+    // --text: var(--text-dark);
+    // --text-neutral: var(--text-dark);
+    --text-input: #{$dark-faded-3};
+    --text-input-hover: #{$color-sky};
+    --text-input-placegholder: #{$dark-faded-2};
+    --text-button-neutral: #{$light};
+    --text-button-primary: #{$color-sky};
+    --text-button-secondary: #{$dark-faded-2};
+    // --text-neutral-light: #{$color-ghost};
+
+    // // Text on X color
+    // --text-on-secondary: var(--text-light);
+
+    // // Font family
+    // --font-main: #{$font-roboto}, #{$font-sans-serif};
+    // --font-accent: #{$font-manrope-bold}, #{$font-sans-serif};
+
+    // Generic elements
+    --input-bg: #{$light-faded-2};
+    // --input-bg: #{$light-faded-2};
+    // --input: #{$white};
+    // --input-border: #{rgba($color-ghost, 0.5)};
+    // --border: #{rgba($color-ghost, 50%)};
+    --border: #{$color-sky};
+    --page-background: #{$light};
+    // --entity-background: #{rgba($color-ghost, 0.2)};
+    // --entity-item-background: #{$white};
+    // --entity-item-border: var(--border);
+    --button-border: #{$light-faded-1};
+    --button-border-primary: #{$color-sky};
+    --button-border-secondary: #{$dark-faded-2};
+    --button-bg-primary: #{$color-sky};
+
+    // // Elements
+    // --participant-row: var(--entity-item-background);
+    // --participant-row-active: rgba(var(--entity-item-background-rgb), 0.4);
+    // --participant-info-box: #{rgba($white, 50%)};
+    // --color-chart-gradient: var(--secondary);
+    // --video-elements-background: #{rgba($color-mine-shaft, 0.8)};
+    // --disabled: #{$color-ghost};
+}

@@ -1,0 +1,49 @@
+@import '~styles/variables';
+
+.register {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+
+    .login-button {
+        margin-bottom: $size-medium;
+    }
+}
+
+.form {
+    width: 100%;    
+    margin-bottom: $size-medium;
+}
+
+.input {
+    margin-bottom: $size-medium;
+
+    &-last {
+        margin-bottom: $size-xx-large;
+    }
+}
+
+.error {
+    font-size: $secondary-font-size;
+    color: $color-error;
+}
+
+.line {
+    position: absolute;
+    top: 9px;
+    width: 100%;
+    height: 1px;
+    background-color: var(--input-bg);
+
+    &-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .text {
+            position: relative;
+            padding: 0 $size-small;
+            background-color: var(--page-background);
+        }
+    }
+}

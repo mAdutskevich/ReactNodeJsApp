@@ -1,0 +1,75 @@
+@import '~styles/variables';
+
+.container {
+    position: relative;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    height: $size-xx-large;
+    padding: 0 $size-mini;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: $border-radius-small;
+    color: var(--text-input);
+    background-color: var(--input-bg);
+
+    &::placeholder {
+        color: var(--text-input-placegholder);
+    }
+
+    &-error {
+        border: 1px solid $color-error;
+        color: $color-error;
+    }
+
+    &-disabled {
+        // background-color: $colorLight3;
+        cursor: initial;
+    }
+
+    &-password {
+        padding-right: $size-enormous;
+    }
+
+    &-wrapper {
+        position: relative;
+    }
+}
+
+.icon {
+    width: $size-x-large;
+    height: $size-x-large;
+    fill: var(--text-input-placegholder);
+
+    &-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: $size-tiny;
+        cursor: pointer;
+        background-color: transparent;
+    }
+}
+
+.label {
+    display: block;
+    margin-bottom: $size-tiny;
+}
+
+.error {
+    position: absolute;
+    margin-top: $size-raff;
+    font-size: $secondary-font-size;
+    color: $color-error;
+
+    &-container {
+        height: 0;
+        position: relative;
+    }
+}

@@ -1,0 +1,52 @@
+@import '~styles/variables';
+@import '~styles/mixins';
+
+.header {
+    height: 70px;
+    padding: 0 $size-medium;
+    display: flex;
+    align-items: center;
+    backdrop-filter: saturate(50%) blur(8px);
+    background-color: var(--primary-faded);
+}
+
+.logo-wrapper {
+    //
+}
+
+.navigation-wrapper {
+    margin-left: $size-xxx-large;
+}
+
+.login {
+    font-weight: $font-weight-bold;
+    @include transition(color);
+
+    &:hover {
+        color: var(--text-main-hover);
+        @include transition(color);
+    }
+
+    &-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        flex: 1;
+    }
+}
+
+// @keyframes gradient {
+//     0% {
+//         // background-position: 0% 50%;
+//         background-size: 100% 100%;
+//     }
+
+//     50% {
+//         // background-position: 100% 50%;
+//         background-size: 150% 150%;
+//     }
+
+//     100% {
+//         // background-position: 0% 50%;
+//         background-size: 100% 100%;
+//     }
+// }

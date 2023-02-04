@@ -1,0 +1,60 @@
+@import '~styles/variables';
+
+.home {
+    padding: $size-medium;
+    flex: 1;
+}
+
+// .post {
+//     display: flex;
+//     flex-direction: column;
+//     // justify-content: space-between;
+//     margin-top: 12px;
+//     border-bottom: 1px solid #000;
+// }
+
+// .postBody {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+// }
+
+// .postAuthor {
+//     margin-top: 4px;
+//     display: flex;
+//     justify-content: flex-end;
+// }
+
+.add-event-button {
+    position: absolute;
+    bottom: $size-xxx-enormous;
+    right: $size-xxx-enormous;
+}
+
+.event {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    border-radius: $border-radius-small;
+    padding: $size-mini;
+    margin-bottom: $size-mini;
+}
+
+.info {
+    flex: 1;
+}
+
+.title {
+    width: 100%;
+    margin-bottom: $size-tiny;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.date {
+    margin-bottom: $size-tiny;
+}

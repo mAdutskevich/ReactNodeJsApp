@@ -1,0 +1,3 @@
+# Start
+yarn
+yarn start

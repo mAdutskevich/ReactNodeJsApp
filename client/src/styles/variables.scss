@@ -1,0 +1,73 @@
+// Colors
+$white: rgb(255, 255, 255);
+$light: rgb(247,247,247);
+$light-faded-4: rgb(240,240,240);
+$light-faded-3: rgb(235,235,235);
+$light-faded-2: rgb(230,230,230);
+$light-faded-1: rgb(200,200,200);
+
+$black: rgb(0,0,0);
+$dark: rgb(36, 36, 36);
+$dark-faded-4: rgb(69,69,69);
+$dark-faded-3: rgb(91,91,91);
+$dark-faded-2: rgb(145,145,145);
+$dark-faded-1: rgb(200,200,200);
+// $color-mariner: #2d3f93;
+$color-sky: #16a085;
+// $color-toxic: #8ff58c ;
+// $color-dirt: #444141;
+// $color-sun: #f4d03f;
+
+$text-light: rgba(255, 255, 255, 0.85);
+// $text-light-hover: $color-sky;
+
+$text-dark: rgb(33, 53, 71);
+// $text-dark-hover: $color-sky;
+// $color-success: #43b02a;
+$color-error: rgb(255,88,88);
+// $color-warning: #f5a826;
+// $color-disabled: #50555b;
+
+// Fonts
+$font-roboto: 'Roboto';
+$font-sans-serif: sans-serif;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$medium-font-size: 16px;
+$primary-font-size: 14px;
+$secondary-font-size: 12px;
+$tertiary-font-size: 10px;
+$initial-line-height: 1.4;
+
+// Spacing
+$size-raff: 2px;
+$size-tiny: 5px;
+$size-mini: 10px;
+$size-small: 15px;
+$size-medium: 20px;
+$size-large: 25px;
+$size-x-large: 30px;
+$size-xx-large: 35px;
+$size-xxx-large: 40px;
+$size-enormous: 50px;
+$size-x-enormous: 55px;
+$size-xx-enormous: 60px;
+$size-xxx-enormous: 65px;
+
+// Breakpoints
+$bp-tiny: 320px;
+$bp-small: 480px;
+$bp-medium: 768px;
+$bp-large: 1024px;
+$bp-x-large: 1440px;
+$bp-xx-large: 1920px;
+$bp-desktop: 1100px;
+
+// Elements
+$border-radius-mini: 3px;
+$border-radius-small: 5px;
+$border-radius-medium: 10px;
+$border-radius-large: 15px;
+$border-radius-x-large: 20px;
+$border-radius-half: 50%;

@@ -1,0 +1,53 @@
+@import '~styles/variables';
+
+.container {
+    position: relative;
+}
+
+.label {
+    display: block;
+    margin-bottom: $size-tiny;
+}
+
+.input {
+    box-sizing: border-box;
+    width: 100%;
+    height: $size-xx-large;
+    padding: 0 $size-xx-large 0 $size-mini;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: $border-radius-small;
+    color: var(--text-input);
+    background-color: var(--input-bg);
+
+    &::placeholder {
+        color: var(--text-input-placegholder);
+    }
+
+    &-error {
+        border: 1px solid $color-error;
+        color: $color-error;
+    }
+
+    &-disabled {
+        cursor: initial;
+    }
+}
+
+.icon-wrapper {
+    position: absolute;
+    right: $size-mini;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+
+    path {
+        fill: var(--text-input-placegholder);
+    }
+}

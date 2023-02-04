@@ -1,0 +1,10 @@
+node_modules
+dist
+public
+
+.eslintrc.js
+jest.config.js
+stylelint.config.js
+
+**/*.test.ts
+**/*.test.tsx

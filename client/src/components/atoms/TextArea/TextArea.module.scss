@@ -1,0 +1,76 @@
+@import '~styles/variables';
+
+.container {
+    position: relative;
+}
+
+.textarea {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    padding: $size-mini;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: $border-radius-small;
+    color: var(--text-input);
+    background-color: var(--input-bg);
+
+    &::placeholder {
+        color: var(--text-input-placegholder);
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+    }
+
+    &-error {
+        border: 1px solid $color-error;
+        color: $color-error;
+    }
+
+    &-disabled {
+        cursor: initial;
+    }
+
+    &-wrapper {
+        position: relative;
+    }
+}
+
+.icon {
+    width: $size-x-large;
+    height: $size-x-large;
+    fill: var(--text-input-placegholder);
+
+    &-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-right: $size-tiny;
+        cursor: pointer;
+        background-color: transparent;
+    }
+}
+
+.label {
+    display: block;
+    margin-bottom: $size-tiny;
+}
+
+.error {
+    position: absolute;
+    margin-top: $size-raff;
+    font-size: $secondary-font-size;
+    color: $color-error;
+
+    &-container {
+        height: 0;
+        position: relative;
+    }
+}

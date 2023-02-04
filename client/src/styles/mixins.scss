@@ -1,0 +1,90 @@
+@use 'sass:math';
+@import 'variables';
+
+@mixin bp-tiny {
+    @media (min-width: $bp-tiny) {
+        @content;
+    }
+}
+
+@mixin bp-small {
+    @media (min-width: $bp-small) {
+        @content;
+    }
+}
+
+@mixin bp-medium {
+    @media (min-width: $bp-medium) {
+        @content;
+    }
+}
+
+@mixin bp-large {
+    @media (min-width: $bp-large) {
+        @content;
+    }
+}
+
+@mixin bp-x-large {
+    @media (min-width: $bp-x-large) {
+        @content;
+    }
+}
+
+@mixin bp-desktop {
+    @media (min-width: $bp-desktop) {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin font-face($family, $src, $font-weight: normal) {
+    @font-face {
+        font-family: $family;
+        src: url('#{$src}.woff2') format('woff2'), url('#{$src}.woff') format('woff');
+        font-style: normal;
+        font-weight: $font-weight;
+    }
+}
+
+// Taken from https://gist.github.com/danielpchen/1bef5000cfda98dbf6be
+// @function implode() -- join list elements to form a single string
+//  {string} $pieces: the list of strings to implode
+//  {string} $glue: the "glue" between elements in the result string
+//  @return {string} the result string
+@function implode($pieces, $glue: '') {
+    $result: null;
+    @for $i from 1 through length($pieces) {
+        $piece: nth($pieces, $i);
+        @if type-of($piece) == list {
+            $result: unquote('#{$result}#{$glue}#{implode($piece, $glue)}');
+        } @else {
+            $result: unquote('#{$result}#{$glue}#{$piece}');
+        }
+    }
+    @if $result != null {
+        $result: str-slice($result, str-length($glue) + 1, -1);
+    }
+    @return $result;
+}
+
+@mixin transition($property, $duration: 0.2s, $timing-function: ease-out) {
+    @if (length($property) == 0) {
+        @error 'Required $property value';
+    }
+
+    @if (length($property) == 1) {
+        transition: $property $duration $timing-function;
+    } @else {
+        transition: {
+            property: implode($property, ',');
+            duration: $duration;
+            timing-function: $timing-function;
+        }
+    }
+}
