@@ -1,10 +1,12 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { requestApi } from './requests';
 import { ErrorCode } from 'enums/ErrorCode';
 import { IError } from 'interfaces/IError';
+import { IToken } from 'interfaces/IToken';
 
 export const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
+    baseURL: process.env.API_URL,
 });
 
 api.interceptors.response.use(
@@ -27,10 +29,12 @@ api.interceptors.response.use(
             console.log('2');
 
             const refreshToken = localStorage.getItem('RefreshToken');
+            const accessToken = localStorage.getItem('Authorization');
+            const decodedAccessToken: IToken = jwt_decode(accessToken);
 
             if (refreshToken) {
                 try {
-                    const tokenResponse = await api(requestApi.getRefreshToken(refreshToken));
+                    const tokenResponse = await api(requestApi.getRefreshToken(refreshToken, decodedAccessToken.iss));
 
                     localStorage.setItem('Authorization', tokenResponse.data.token);
                     originalRequest.headers.Authorization = tokenResponse.data.token;

@@ -1,14 +1,16 @@
 import fs from 'fs';
 import { Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
+import jwt_decode, { JwtPayload } from 'jwt-decode';
+import { OAuth2Client, LoginTicket } from 'google-auth-library';
 import appConfig from 'config/config';
-import { ErrorCode } from 'enums/ErrorCode';
-import RouteError from 'utils/RouteError';
-import { tokenVerificationErrorHandler } from 'utils/tokenVerificationErrorHandler';
+import { ErrorCode, IssuerType } from 'enums';
+import { IToken } from 'interfaces';
+import { tokenVerificationErrorHandler, RouteError } from 'utils';
 
 const jwtPublicCert = fs.readFileSync(appConfig.JWT_PUBLIC_CERT_PATH, 'utf8');
 
-export const validateToken = (req: Request, res: Response, next: () => void) => {
+export const validateToken = async (req: Request, res: Response, next: () => void) => {
     const token = req.header('Authorization');
 
     if (!token) {
@@ -18,12 +20,44 @@ export const validateToken = (req: Request, res: Response, next: () => void) => 
     }
 
     try {
-        const validToken = verify(token, jwtPublicCert);
+        const decodedToken: IToken = jwt_decode(token);
+        let isTokenValid: string | JwtPayload | LoginTicket = null;
+        let isTokenExpired: boolean = true;
 
-        if (validToken) {
+        if (decodedToken.exp * 1000 > Date.now()) {
+            isTokenExpired = false;
+        } else {
+            return res.status(401).json({
+                errors: [new RouteError(ErrorCode.UNAUTHORIZED_TOKEN_EXPIRED)],
+            });
+        }
+
+        if (decodedToken.iss === IssuerType.CRDENTIALS) {
+            try {
+                isTokenValid = verify(token, jwtPublicCert);
+            } catch (err: any) {
+                tokenVerificationErrorHandler(err, res, ErrorCode.UNAUTHORIZED_TOKEN_EXPIRED);
+            }
+        } else if (decodedToken.iss === IssuerType.GOOGLE) {
+            const googleOauth2Client = new OAuth2Client();
+
+            try {
+                isTokenValid = await googleOauth2Client.verifyIdToken({
+                    idToken: token,
+                });
+            } catch (err: any) {
+                return res.status(401).json({
+                    errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],
+                });
+            }
+        }
+
+        if (isTokenValid && !isTokenExpired) {
             return next();
         }
-    } catch (err: any) {
-        tokenVerificationErrorHandler(err, res, ErrorCode.UNAUTHORIZED_TOKEN_EXPIRED);
+    } catch (err) {
+        return res.status(401).json({
+            errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],
+        });
     }
 };

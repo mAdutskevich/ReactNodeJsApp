@@ -1,12 +1,13 @@
 import { sign } from 'jsonwebtoken';
+import { ICreateToken } from 'interfaces';
 
-export const createToken = (code: string, lifetime: number, cert: string): string => {
+export const createToken = (token: ICreateToken, lifetime: number, cert: string): string => {
     return sign(
         {
-            code,
-            exp: Math.floor(Date.now() / 1000) + lifetime * 60
+            ...token,
+            exp: Math.floor(Date.now() / 1000) + lifetime * 60,
         },
         cert,
-        { algorithm: 'RS256' }
+        { algorithm: 'RS256' },
     );
 };

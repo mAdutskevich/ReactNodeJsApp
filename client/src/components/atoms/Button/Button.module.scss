@@ -52,4 +52,18 @@
     .notification {
 
     }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-icon-margin {
+        margin-left: $size-mini;
+    }
+
+    .right-icon-margin {
+        margin-right: $size-mini;
+    }
 }

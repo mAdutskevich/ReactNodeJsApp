@@ -1,8 +1,8 @@
 import 'module-alias/register';
 import express from 'express';
 import cors from 'cors';
-import appConfig from './config/config';
-import db from './models';
+import appConfig from 'config/config';
+import db from 'models';
 
 const app = express();
 

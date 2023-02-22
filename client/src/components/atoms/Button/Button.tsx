@@ -8,6 +8,8 @@ interface IProps {
     label: string;
     onClick?: () => void;
     type?: ButtonType.BUTTON | ButtonType.SUBMIT | ButtonType.RESET;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
     designType?:
         | ButtonDesignType.SECONDARY
         | ButtonDesignType.WARNING
@@ -30,7 +32,18 @@ export const Button: React.FC<IProps> = (props) => {
             })}
             onClick={props.onClick}
         >
-            {props.label}
+            <div className={classes.container}>
+                {props.leftIcon}
+                <p
+                    className={classNames({
+                        [classes.leftIconMargin]: props.leftIcon,
+                        [classes.rightIconMargin]: props.rightIcon,
+                    })}
+                >
+                    {props.label}
+                </p>
+                {props.rightIcon}
+            </div>
         </button>
     );
 };

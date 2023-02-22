@@ -1,11 +1,11 @@
 import { Response } from 'express';
-import RouteError from 'utils/RouteError';
-import { ErrorCode } from 'enums/ErrorCode';
-import { IErrorCode } from 'interfaces/IErrorCode';
+import { RouteError } from 'utils';
+import { ErrorCode } from 'enums';
+import { IErrorCode } from 'interfaces';
 
 export const tokenVerificationErrorHandler = (err: unknown, res: Response, errCode: IErrorCode) => {
-    // jsonwebtoken verify error names can be 3 types:
-    // 'JsonWebTokenError' || 'JsonWebTokenError' || 'NotBeforeError'
+    // #### jsonwebtoken verify error names can be 3 types:
+    // #### 'JsonWebTokenError' || 'JsonWebTokenError' || 'NotBeforeError'
 
     if (err instanceof Error) {
         switch (err.name) {

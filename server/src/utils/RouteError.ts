@@ -1,6 +1,6 @@
-import { IErrorCode } from 'interfaces/IErrorCode';
+import { IErrorCode } from 'interfaces';
 
-export default class RouteError extends Error {
+export class RouteError extends Error {
     declare code: IErrorCode;
 
     constructor(code: IErrorCode) {

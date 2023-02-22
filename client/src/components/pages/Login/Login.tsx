@@ -1,20 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useGoogleLogin, CodeResponse } from '@react-oauth/google';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonType } from 'enums/ButtonType';
 import { ButtonDesignType } from 'enums/ButtonDesignType';
 import { InputType } from 'enums/InputType';
+import { IAuth } from 'interfaces/IAuth';
 import { routes } from 'utils/routes';
+import { api } from 'api/axiosSettings';
+import { requestApi } from 'api/requests';
 import { Button } from 'atoms/Button/Button';
 import { Input } from 'atoms/Input';
+import { GoogleIcon } from 'icons/index';
 import classes from './Login.module.scss';
-
-interface IAuth {
-    email: string;
-    password: string;
-}
 
 export const Login: React.FC = () => {
     const navigate = useNavigate();
@@ -37,8 +36,7 @@ export const Login: React.FC = () => {
     });
 
     const onSubmit = (data: IAuth) => {
-        axios
-            .post('http://localhost:3001/auth/login', data)
+        api(requestApi.login(data))
             .then((response) => {
                 localStorage.setItem('Authorization', response.data.token);
                 localStorage.setItem('RefreshToken', response.data.refreshToken);
@@ -63,8 +61,29 @@ export const Login: React.FC = () => {
         navigate(routes.register);
     };
 
+    const handleGoogleSuccess = (data: CodeResponse) => {
+        console.log('data', data);
+        
+        api(requestApi.authGoogle(data))
+            .then((response) => {
+                console.log('response', response);
+                localStorage.setItem('Authorization', response.data.token);
+                localStorage.setItem('RefreshToken', response.data.refreshToken);
+
+                setFormErrors([]);
+                navigate(routes.home);
+            })
+            .catch((err) => console.log('err', err));
+    };
+
+    const handleGoogleLogIn = useGoogleLogin({
+        onSuccess: handleGoogleSuccess,
+        flow: 'auth-code',
+    });
+
     return (
         <div className={classes.login}>
+            <h2 className={classes.title}>Log In</h2>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 <Input
                     id="email"
@@ -108,6 +127,20 @@ export const Login: React.FC = () => {
                 isFullWidth
                 onClick={handleSignUp}
                 designType={ButtonDesignType.SECONDARY}
+                className={classes.signupButton}
+            />
+            <div className={classes.lineWrapper}>
+                <div className={classes.line} />
+                <div className={classes.text}>or</div>
+            </div>
+            <Button
+                type={ButtonType.BUTTON}
+                label="Log in with Google"
+                isFullWidth
+                onClick={handleGoogleLogIn}
+                designType={ButtonDesignType.SECONDARY}
+                leftIcon={<GoogleIcon />}
+                className={classes.googleButton}
             />
         </div>
     );

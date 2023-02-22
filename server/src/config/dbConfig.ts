@@ -1,14 +1,6 @@
-import { IDbConfig } from '../interfaces/IDbConfig';
-
-const dbConfig: IDbConfig = {
-    development: {
-        username: 'root',
-        password: '123',
-        database: 'eventizer_dev',
-        host: '127.0.0.1',
-        dialect: 'mysql',
-        port: 3308
-    }
-};
+import fs from 'fs';
+import appConfig from 'config/config';
+const mySqlConfigRaw = fs.readFileSync(appConfig.MYSQL_CONFIG_PATH);
+const dbConfig = JSON.parse(mySqlConfigRaw.toString());
 
 export default dbConfig;

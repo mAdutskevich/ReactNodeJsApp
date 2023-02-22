@@ -1,43 +1,16 @@
 import express from 'express';
 import jwt_decode from 'jwt-decode';
-import model from '../models';
-import { validateToken } from '../middlewares/authMiddleware';
-import RouteError from '../utils/RouteError';
-import { ErrorCode } from '../enums/ErrorCode';
+import model from 'models';
+import { validateToken } from 'middlewares/authMiddleware';
+import { routes } from 'constants/routes';
+import { AUTHORIZATION } from 'constants/constants';
+import { ErrorCode } from 'enums';
+import { IToken, IEvent, IEventsItemModel, IEventWithAuthor, IUser } from 'interfaces';
+import { RouteError } from 'utils';
 
 const router = express.Router();
 
-interface IEvent {
-    title: string;
-    description: string;
-    address: string;
-    participantsMin: number;
-    participantsMax: number;
-    dateFrom: number;
-    dateTo: number;
-    userCode: string;
-}
-
-interface IUser {
-    name: string;
-    surname: string;
-    code: string;
-}
-
-interface IEventWithAuthor extends IEvent {
-    author: IUser;
-}
-
-interface IToken {
-    code: string;
-    exp: number;
-}
-
-interface IEventsItemModel {
-    dataValues: IEvent;
-}
-
-router.get('/', validateToken, async (req, res) => {
+router.get(routes.direct, validateToken, async (req, res) => {
     const eventsListData: IEventsItemModel[] = await model.events.findAll({
         attributes: [
             'title',
@@ -78,8 +51,8 @@ router.get('/', validateToken, async (req, res) => {
 //     res.json(post);
 // });
 
-router.post('/new', validateToken, async (req, res) => {
-    const accessToken: string = req.header('Authorization');
+router.post(routes.new, validateToken, async (req, res) => {
+    const accessToken: string = req.header(AUTHORIZATION);
     const decodedToken: IToken = jwt_decode(accessToken);
     console.log('decodedToken', decodedToken);
     const code = decodedToken.code;

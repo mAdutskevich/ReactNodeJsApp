@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ButtonType } from 'enums/ButtonType';
@@ -11,6 +12,7 @@ import { api } from 'api/axiosSettings';
 import { requestApi } from 'api/requests';
 import { Button } from 'atoms/Button/Button';
 import { Input } from 'atoms/Input';
+import { GoogleIcon } from 'icons/index';
 import classes from './Register.module.scss';
 
 export const Register: React.FC = () => {
@@ -65,8 +67,14 @@ export const Register: React.FC = () => {
         navigate(routes.login);
     };
 
+    const handleGoogleSignUp = useGoogleLogin({
+        onSuccess: (codeResponse) => console.log(codeResponse),
+        flow: 'auth-code',
+    });
+
     return (
         <div className={classes.register}>
+            <h2 className={classes.title}>Register</h2>
             <form className={classes.form} onSubmit={formik.handleSubmit}>
                 <Input
                     id="email"
@@ -128,6 +136,15 @@ export const Register: React.FC = () => {
                 <div className={classes.line} />
                 <div className={classes.text}>or</div>
             </div>
+            <Button
+                type={ButtonType.BUTTON}
+                label="Sign up with Google"
+                isFullWidth
+                onClick={handleGoogleSignUp}
+                designType={ButtonDesignType.SECONDARY}
+                leftIcon={<GoogleIcon />}
+                className={classes.googleButton}
+            />
         </div>
     );
 };
