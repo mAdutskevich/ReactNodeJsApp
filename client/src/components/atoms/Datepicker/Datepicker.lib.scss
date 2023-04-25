@@ -72,7 +72,7 @@
 
     &--disabled {
         background-color: var(--primary);
-        
+
         &:hover {
             background-color: var(--primary);
         }
@@ -90,7 +90,7 @@
     }
 }
 
-.react-datepicker__time-container  {
+.react-datepicker__time-container {
     .react-datepicker-time__header {
         color: var(--text-input);
     }
@@ -100,7 +100,7 @@
             background-color: var(--input-bg);
 
             ul.react-datepicker__time-list {
-                li.react-datepicker__time-list-item  {
+                li.react-datepicker__time-list-item {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -115,15 +115,6 @@
                     }
                 }
             }
-    
-            
         }
-    
     }
-    
-    
 }
-
-// .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list
-//  li.react-datepicker__time-list-item:hover
-/* stylelint-enable selector-class-pattern, unit-allowed-list*/

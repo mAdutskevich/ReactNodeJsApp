@@ -46,7 +46,7 @@ export const EventNew: React.FC = () => {
             .integer('quantity must be integer'),
         participantsMax: Yup.number()
             .nullable(true)
-            // .required('participants quantity is required')
+            // .required('participants quantity is required') need to think about it
             .when('participantsMin', (participantsMin) => {
                 if (participantsMin) {
                     return Yup.number()
@@ -88,7 +88,6 @@ export const EventNew: React.FC = () => {
                     setFormErrors(response.data.errors);
                 } else {
                     console.log('success');
-                    // localStorage.setItem('Authorization', response.data.token);
                     setFormErrors([]);
                     navigate(routes.home);
                 }
@@ -106,7 +105,6 @@ export const EventNew: React.FC = () => {
                 >
                     {(props) => (
                         <Form className={classes.form}>
-                            {/* onSubmit={formik.handleSubmit} */}
                             <Input
                                 id="title"
                                 label="Title"

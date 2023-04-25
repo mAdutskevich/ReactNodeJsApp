@@ -4,45 +4,23 @@
     // Main
     --primary: #{$dark};
     --primary-faded: #{$dark};
-    // --secondary-light: #{$color-sail};
-    // --error: #{$color-error};
-    // --success: #{$color-success};
 
     // Text
     --text-main: #{$light-faded-4};
     --text-main-hover: #{$color-sky};
-    // --text-dark: #{$color-charcoal};
-    // --text: var(--text-light);
     --text-input: #{$light-faded-3};
     --text-input-hover: #{$color-sky};
     --text-input-placegholder: #{$dark-faded-2};
     --text-button-neutral: #{$light};
     --text-button-primary: #{$color-sky};
     --text-button-secondary: #{$dark-faded-2};
-    // --text-neutral-light: #{$color-ghost};
-
-    // // Font family
-    // --font-main: #{$font-roboto}, #{$font-sans-serif};
-    // --font-accent: #{$font-manrope-bold}, #{$font-sans-serif};
 
     // Generic elements
-    // --input: #{$color-charcoal};
     --input-bg: #{$dark-faded-4};
-    // --input-border: #{rgba($color-ghost, 0.5)};
     --border: #{$color-sky};
     --page-background: #{$dark};
-    // --entity-background: #{$color-charcoal};
-    // --entity-item-background: #{$color-mine-shaft};
-    // --entity-item-border: var(--entity-background);
     --button-border: #{$dark-faded-4};
     --button-border-primary: #{$color-sky};
     --button-border-secondary: #{$dark-faded-2};
     --button-bg-primary: #{$color-sky};
-
-    // // Elements
-    // --participant-row: var(--entity-item-background);
-    // --participant-row-active: rgba(var(--entity-item-background-rgb), 0.5);
-    // --participant-info-box: #{rgba($color-mine-shaft, 0.8)};
-    // --color-chart-gradient: #{$white};
-    // --video-elements-background: #{rgba($color-mine-shaft, 0.8)};
 }

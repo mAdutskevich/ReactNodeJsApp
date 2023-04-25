@@ -10,10 +10,6 @@
     background-color: var(--primary-faded);
 }
 
-.logo-wrapper {
-    //
-}
-
 .navigation-wrapper {
     margin-left: $size-xxx-large;
 }
@@ -33,20 +29,3 @@
         flex: 1;
     }
 }
-
-// @keyframes gradient {
-//     0% {
-//         // background-position: 0% 50%;
-//         background-size: 100% 100%;
-//     }
-
-//     50% {
-//         // background-position: 100% 50%;
-//         background-size: 150% 150%;
-//     }
-
-//     100% {
-//         // background-position: 0% 50%;
-//         background-size: 100% 100%;
-//     }
-// }

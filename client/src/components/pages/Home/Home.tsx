@@ -1,22 +1,12 @@
 import React from 'react';
-import axios from 'axios';
-import { format, parseISO } from 'date-fns';
-import { DATE_FORMAT, DATETIME_FORMAT } from 'constants/constants';
-import { Link, useNavigate } from 'react-router-dom';
+import { format, } from 'date-fns';
+import { DATETIME_FORMAT } from 'constants/constants';
+import { useNavigate } from 'react-router-dom';
 import { routes } from 'utils/routes';
 import { api } from 'api/axiosSettings';
 import { requestApi } from 'api/requests';
 import { CircleButton } from 'atoms/CircleButton';
 import classes from './Home.module.scss';
-
-// interface IPost {
-//     id: number;
-//     title: string;
-//     postText: string;
-//     userName: string;
-//     createdAt: string;
-//     updatedAt: string;
-// }
 
 interface IUser {
     name: string;
@@ -50,31 +40,9 @@ const getAuthor = (name: string, surname: string, code: string) => {
 
 export const Home: React.FC = () => {
     const navigate = useNavigate();
-    // const [posts, setPosts] = React.useState<IPost[]>([]);
     const [events, setEvents] = React.useState<IEvent[]>([]);
-    // React.useEffect(() => {
-    //     axios.get<IPost[]>('http://localhost:3001/posts').then((res) => {
-    //         setPosts(res.data);
-    //     });
-    //     // .catch((er) => {
-    //     //     console.log(er.message);
-    //     // });
-    // }, []);
 
     React.useEffect(() => {
-        // axios
-        //     .get<IEvent[]>('http://localhost:3001/events', {
-        //         headers: {
-        //             Authorization: localStorage.getItem('Authorization'),
-        //         },
-        //     })
-        //     .then((res) => {
-        //         console.log('res', res);
-        //         setEvents(res.data);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
         api(requestApi.getEvents(localStorage.getItem('Authorization')))
             .then((res) => {
                 console.log('res', res);
@@ -92,15 +60,10 @@ export const Home: React.FC = () => {
     return (
         <div className={classes.home}>
             {events.map((item, index) => {
-                // const onPostClick = () => {
-                //     navigate(`/post/${item.id}`);
-                // };
-
                 return (
                     <div
                         role="presentation"
                         key={index}
-                        // onClick={onPostClick}
                         className={classes.event}
                     >
                         <div className={classes.info}>

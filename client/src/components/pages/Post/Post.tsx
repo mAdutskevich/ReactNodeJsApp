@@ -52,9 +52,6 @@ export const Post: React.FC = () => {
                     getComments(params.id);
                 }
             });
-        // .catch((err) => {
-        //     console.log('err', err);
-        // });
     };
 
     const ValidationSchema = Yup.object().shape({

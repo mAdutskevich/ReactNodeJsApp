@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Root } from 'pages/Root';
-import './App.scss';
 
 const App: React.FC = () => (
     <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>

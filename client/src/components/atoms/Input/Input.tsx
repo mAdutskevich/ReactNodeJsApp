@@ -14,7 +14,7 @@ interface IProps {
     className?: string;
     value: string | number;
     error?: string;
-    // isRequired?: boolean;
+    // isRequired?: boolean; will be added in future
     isDisabled?: boolean;
     onChange: (e: React.ChangeEvent<any>) => void;
     onBlur: (e: React.FocusEvent<any>) => void;

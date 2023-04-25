@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useRoutes, useNavigate, useLocation } from 'react-router-dom';
-import { ROUTES, SUB_ROUTES } from 'constants/routes';
+import { ROUTES } from 'constants/routes';
 import { routes } from 'utils/routes';
 import { Layout } from 'templates/Layout';
 import { AuthLayout } from 'templates/AuthLayout';
@@ -9,8 +9,6 @@ import { Login } from 'pages/Login';
 import { Register } from 'pages/Register';
 import { EventNew } from 'pages/EventNew';
 import { Error404 } from 'pages/Error404';
-// import { CreatePost } from '../CreatePost';
-// import { Post } from '../Post';
 
 export const Root: React.FC = () => {
     const navigate = useNavigate();
@@ -36,9 +34,6 @@ export const Root: React.FC = () => {
             { path: routes.all, element: <Navigate to={routes.error404} /> },
             { path: routes.home, element: <Home /> },
             { path: routes.eventNew, element: <EventNew /> },
-            // { path: ROUTES.SETTINGS, element: <Settings /> },
-            // { path: SUB_ROUTES.AUTH.LOGIN, element: <Navigate to={routes.login} /> },
-            // { path: SUB_ROUTES.AUTH.REGISTER, element: <Navigate to={routes.register} /> },
             { path: ROUTES.ERROR404, element: <Error404 /> },
         ],
     };
@@ -51,16 +46,5 @@ export const Root: React.FC = () => {
         }
     }
 
-    return (
-        // <BrowserRouter>
-        //     <Routes>
-        //         <Route path="/" element={<Home />} />
-        //         <Route path="/login" element={<Login />} />
-        //         <Route path="/registration" element={<Register />} />
-        //         <Route path="/new-post" element={<CreatePost />} />
-        //         <Route path="/post/:id" element={<Post />} />
-        //     </Routes>
-        // </BrowserRouter>
-        <>{routing}</>
-    );
+    return <>{routing}</>;
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Box, Typography } from '@mui/material';
 import classes from './Error404.module.scss';
 
 export const Error404 = () => (

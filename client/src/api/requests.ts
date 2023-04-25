@@ -1,7 +1,6 @@
 import { CodeResponse } from '@react-oauth/google';
 import { IAuth } from 'interfaces/IAuth';
 import { RequestMethodType } from 'enums/RequestMethodType';
-import { IssuerType } from 'enums/IssuerType';
 
 export const requestApi = {
     register: (data: IAuth) => ({

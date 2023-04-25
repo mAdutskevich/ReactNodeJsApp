@@ -63,7 +63,7 @@ export const Login: React.FC = () => {
 
     const handleGoogleSuccess = (data: CodeResponse) => {
         console.log('data', data);
-        
+
         api(requestApi.authGoogle(data))
             .then((response) => {
                 console.log('response', response);
