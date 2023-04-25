@@ -45,16 +45,9 @@ router.get(routes.direct, validateToken, async (req, res) => {
     res.json(eventsWithAuthors);
 });
 
-// router.get('/:id', async (req, res) => {
-//     const id = req.params.id;
-//     const post = await Posts.findByPk(id);
-//     res.json(post);
-// });
-
 router.post(routes.new, validateToken, async (req, res) => {
     const accessToken: string = req.header(AUTHORIZATION);
     const decodedToken: IToken = jwt_decode(accessToken);
-    console.log('decodedToken', decodedToken);
     const code = decodedToken.code;
     const user: IUser = await model.users.findOne({ where: { code } });
     let event: IEvent;

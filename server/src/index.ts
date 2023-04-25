@@ -3,25 +3,15 @@ import express from 'express';
 import cors from 'cors';
 import appConfig from 'config/config';
 import db from 'models';
+import { router as eventsRouter } from './routes/events';
+import { router as usersRouter } from './routes/users';
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-
-// Routers
-// const postsRouter = require('./routes/Posts');
-// app.use('/posts', postsRouter);
-
-import { router as eventsRouter } from './routes/events';
 app.use('/events', eventsRouter);
-
-// const commentsRouter = require('./routes/Comments');
-// app.use('/comments', commentsRouter);
-
-// const usersRouter = require('./routes/users');
-import { router as usersRouter } from './routes/users';
 app.use('/auth', usersRouter);
 
 db.sequelize.sync().then(() => {

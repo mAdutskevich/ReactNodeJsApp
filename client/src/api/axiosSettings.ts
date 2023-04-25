@@ -16,8 +16,6 @@ api.interceptors.response.use(
     async (err) => {
         const originalRequest = err.config;
 
-        console.log('1');
-
         if (
             err.response.status === 401 &&
             !originalRequest._retry &&
@@ -26,7 +24,6 @@ api.interceptors.response.use(
             )
         ) {
             originalRequest._retry = true;
-            console.log('2');
 
             const refreshToken = localStorage.getItem('RefreshToken');
             const accessToken = localStorage.getItem('Authorization');
@@ -47,7 +44,6 @@ api.interceptors.response.use(
             }
 
             // axios.defaults.headers.common['Authorization'] = 'Bearer ' + access_token;
-            
         }
 
         return Promise.reject(err);
