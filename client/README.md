@@ -1,5 +1,5 @@
 # Description
-# React application for testing futures
+# React application for testing futures and configurations
 # Includes routes:
 http://localhost:8090/
 http://localhost:8090/auth/login
