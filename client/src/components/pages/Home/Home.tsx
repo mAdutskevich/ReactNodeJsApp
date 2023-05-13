@@ -1,11 +1,13 @@
 import React from 'react';
-import { format, } from 'date-fns';
-import { DATETIME_FORMAT } from 'constants/constants';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+import { AppContext } from 'contexts/AppContext';
+import { DATETIME_FORMAT } from 'constants/constants';
 import { routes } from 'utils/routes';
 import { api } from 'api/axiosSettings';
 import { requestApi } from 'api/requests';
 import { CircleButton } from 'atoms/CircleButton';
+import { SomeComponent } from 'atoms/SomeComponent';
 import classes from './Home.module.scss';
 
 interface IUser {
@@ -41,6 +43,12 @@ const getAuthor = (name: string, surname: string, code: string) => {
 export const Home: React.FC = () => {
     const navigate = useNavigate();
     const [events, setEvents] = React.useState<IEvent[]>([]);
+    const [state, setState] = React.useState({
+        name: 'Mike',
+        value: 'SomeValue',
+    });
+
+    const store = React.useMemo(() => ({ state, setState }), [state])
 
     React.useEffect(() => {
         api(requestApi.getEvents(localStorage.getItem('Authorization')))
@@ -61,11 +69,7 @@ export const Home: React.FC = () => {
         <div className={classes.home}>
             {events.map((item, index) => {
                 return (
-                    <div
-                        role="presentation"
-                        key={index}
-                        className={classes.event}
-                    >
+                    <div role="presentation" key={index} className={classes.event}>
                         <div className={classes.info}>
                             <div className={classes.title}>{item.title}</div>
 
@@ -90,6 +94,14 @@ export const Home: React.FC = () => {
             <div className={classes.addEventButton}>
                 <CircleButton onClick={handleAddEvent} />
             </div>
+            {/* <AppContext.Provider value={{
+                state,
+                setState,
+            }}> */}
+            <AppContext.Provider value={store}>
+                <SomeComponent />
+            </AppContext.Provider>
+
         </div>
     );
 };

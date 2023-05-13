@@ -28,6 +28,7 @@ export default defineConfig({
             icons: getPathName('icons'),
             styles: getPathName('styles'),
             constants: getPathName('constants'),
+            contexts: getPathName('contexts'),
             enums: getPathName('enums'),
             utils: getPathName('utils'),
             interfaces: getPathName('interfaces'),

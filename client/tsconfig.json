@@ -12,6 +12,7 @@
             "icons/*": ["src/icons/*"],
             "styles/*": ["src/styles/*"],
             "constants/*": ["src/constants/*"],
+            "contexts/*": ["src/contexts/*"],
             "enums/*": ["src/enums/*"],
             "utils/*": ["src/utils/*"],
             "interfaces/*": ["src/interfaces/*"],
