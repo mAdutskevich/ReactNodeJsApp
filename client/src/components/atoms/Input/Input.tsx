@@ -17,11 +17,14 @@ interface IProps {
     // isRequired?: boolean; will be added in future
     isDisabled?: boolean;
     onChange: (e: React.ChangeEvent<any>) => void;
-    onBlur: (e: React.FocusEvent<any>) => void;
+    onBlur?: (e: React.FocusEvent<any>) => void;
 }
 
-export const Input: React.FC<IProps> = (props) => {
+export const Input: React.FC<IProps> = React.memo((props) => {
     const [isHide, setIshide] = React.useState<boolean>(true);
+
+    console.log('input: ', props.name);
+
     const calculatedInputType = React.useMemo(() => {
         if (props.type) {
             if (props.type === InputType.PASSWORD) {
@@ -84,4 +87,4 @@ export const Input: React.FC<IProps> = (props) => {
             </div>
         </div>
     );
-};
+});

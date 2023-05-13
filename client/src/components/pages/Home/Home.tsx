@@ -1,11 +1,12 @@
 import React from 'react';
-import { format, } from 'date-fns';
+import { format } from 'date-fns';
 import { DATETIME_FORMAT } from 'constants/constants';
 import { useNavigate } from 'react-router-dom';
 import { routes } from 'utils/routes';
 import { api } from 'api/axiosSettings';
 import { requestApi } from 'api/requests';
 import { CircleButton } from 'atoms/CircleButton';
+import { InputWrapperWrapper } from 'organisms/InputWrapperWrapper';
 import classes from './Home.module.scss';
 
 interface IUser {
@@ -26,6 +27,15 @@ interface IEvent {
     author: IUser;
 }
 
+export interface IFormData {
+    name: {
+        value: string;
+    };
+    wrapperName: {
+        value: string;
+    };
+}
+
 const getAuthor = (name: string, surname: string, code: string) => {
     let author = code.substring(0, 6);
 
@@ -41,6 +51,16 @@ const getAuthor = (name: string, surname: string, code: string) => {
 export const Home: React.FC = () => {
     const navigate = useNavigate();
     const [events, setEvents] = React.useState<IEvent[]>([]);
+    const [formData, setFormData] = React.useState<IFormData>({
+        name: {
+            value: '',
+        },
+        wrapperName: {
+            value: '',
+        },
+    });
+
+    console.log('home');
 
     React.useEffect(() => {
         api(requestApi.getEvents(localStorage.getItem('Authorization')))
@@ -57,15 +77,35 @@ export const Home: React.FC = () => {
         navigate(routes.eventNew);
     };
 
+    const handleChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('change', event.target.name);
+
+        if (event.target.name === 'name') {
+            setFormData((prevState: IFormData) => {
+                return {
+                    ...prevState,
+                    name: {
+                        value: event.target.value,
+                    },
+                };
+            });
+        } else {
+            setFormData((prevState: IFormData) => {
+                return {
+                    ...prevState,
+                    wrapperName: {
+                        value: event.target.value,
+                    },
+                };
+            });
+        }
+    }, []);
+
     return (
         <div className={classes.home}>
             {events.map((item, index) => {
                 return (
-                    <div
-                        role="presentation"
-                        key={index}
-                        className={classes.event}
-                    >
+                    <div role="presentation" key={index} className={classes.event}>
                         <div className={classes.info}>
                             <div className={classes.title}>{item.title}</div>
 
@@ -87,6 +127,7 @@ export const Home: React.FC = () => {
                     </div>
                 );
             })}
+            <InputWrapperWrapper formData={formData} onChange={handleChange} />
             <div className={classes.addEventButton}>
                 <CircleButton onClick={handleAddEvent} />
             </div>
