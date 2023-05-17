@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { InputType } from 'enums/InputType';
 import { ButtonType } from 'enums/ButtonType';
-import { EyeShowIcon, EyeHideIcon } from 'icons';
+import { EyeShowIcon, EyeHideIcon } from 'icons/index';
 import classes from './Input.module.scss';
 
 interface IProps {
@@ -16,7 +16,7 @@ interface IProps {
     error?: string;
     // isRequired?: boolean; will be added in future
     isDisabled?: boolean;
-    onChange: (e: React.ChangeEvent<any>) => void;
+    onChange: (e: React.ChangeEvent<Date | string | number>) => void;
     onBlur: (e: React.FocusEvent<any>) => void;
 }
 

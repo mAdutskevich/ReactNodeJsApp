@@ -15,7 +15,7 @@ interface IProps {
     maxDate?: number;
     minDate?: number;
     showTime?: boolean;
-    error?: string; 
+    error?: string;
     onChange(value: number): void;
 }
 
@@ -34,9 +34,7 @@ export const Datepicker: React.FC<IProps> = (props) => {
 
     const onChange = React.useCallback(
         (date: Date) => {
-            console.log('set dtae', getUnixTime(date));
-            
-            props.onChange(getUnixTime(date))
+            props.onChange(getUnixTime(date));
         },
         [props.onChange],
     );

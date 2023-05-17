@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ButtonType } from 'enums/ButtonType';
-import { PlusIcon } from 'icons';
+import { PlusIcon } from 'icons/index';
 import classes from './CircleButton.module.scss';
 
 interface IProps {
@@ -18,7 +18,7 @@ export const CircleButton: React.FC<IProps> = (props) => {
             onClick={props.onClick}
             title={props.label}
         >
-            <PlusIcon className={classes.icon}/>
+            <PlusIcon className={classes.icon} />
         </button>
     );
 };

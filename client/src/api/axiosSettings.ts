@@ -1,9 +1,9 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import { requestApi } from './requests';
 import { ErrorCode } from 'enums/ErrorCode';
 import { IError } from 'interfaces/IError';
 import { IToken } from 'interfaces/IToken';
+import { requestApi } from './requests';
 
 export const api = axios.create({
     baseURL: process.env.API_URL,
@@ -18,12 +18,12 @@ api.interceptors.response.use(
 
         if (
             err.response.status === 401 &&
-            !originalRequest._retry &&
+            !originalRequest.retryReq &&
             err.response?.data?.errors?.some(
                 (error: IError) => error.code === ErrorCode.UNAUTHORIZED_TOKEN_EXPIRED,
             )
         ) {
-            originalRequest._retry = true;
+            originalRequest.retryReq = true;
 
             const refreshToken = localStorage.getItem('RefreshToken');
             const accessToken = localStorage.getItem('Authorization');
@@ -31,12 +31,15 @@ api.interceptors.response.use(
 
             if (refreshToken) {
                 try {
-                    const tokenResponse = await api(requestApi.getRefreshToken(refreshToken, decodedAccessToken.iss));
+                    const tokenResponse = await api(
+                        requestApi.getRefreshToken(refreshToken, decodedAccessToken.iss),
+                    );
 
                     localStorage.setItem('Authorization', tokenResponse.data.token);
                     originalRequest.headers.Authorization = tokenResponse.data.token;
+
                     return api(originalRequest);
-                } catch (err) {
+                } catch (error) {
                     // navigate to login
                 }
             } else {

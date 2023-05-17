@@ -15,5 +15,3 @@ export interface IToken {
     exp: number;
     code?: string;
 }
-
-

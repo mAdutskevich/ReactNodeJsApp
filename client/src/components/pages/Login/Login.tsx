@@ -62,18 +62,15 @@ export const Login: React.FC = () => {
     };
 
     const handleGoogleSuccess = (data: CodeResponse) => {
-        console.log('data', data);
-
         api(requestApi.authGoogle(data))
             .then((response) => {
-                console.log('response', response);
                 localStorage.setItem('Authorization', response.data.token);
                 localStorage.setItem('RefreshToken', response.data.refreshToken);
 
                 setFormErrors([]);
                 navigate(routes.home);
             })
-            .catch((err) => console.log('err', err));
+            .catch((err) => console.warn('err', err));
     };
 
     const handleGoogleLogIn = useGoogleLogin({

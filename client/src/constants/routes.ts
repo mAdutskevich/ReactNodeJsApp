@@ -2,7 +2,7 @@ export const ROUTES = {
     AUTH: 'auth',
     SETTINGS: 'settings',
     ERROR404: '404',
-    EVENTS: 'events'
+    EVENTS: 'events',
 };
 
 export const SUB_ROUTES = {
@@ -11,6 +11,6 @@ export const SUB_ROUTES = {
         REGISTER: 'register',
     },
     EVENTS: {
-        NEW: 'new'
-    }
+        NEW: 'new',
+    },
 };

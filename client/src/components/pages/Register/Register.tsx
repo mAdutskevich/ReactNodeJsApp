@@ -49,8 +49,6 @@ export const Register: React.FC = () => {
                 navigate(routes.home);
             })
             .catch((err) => {
-                console.log('err', err);
-
                 setFormErrors(
                     err.response.data?.errors?.length ? err.response.data.errors : err.code,
                 );
@@ -68,7 +66,7 @@ export const Register: React.FC = () => {
     };
 
     const handleGoogleSignUp = useGoogleLogin({
-        onSuccess: (codeResponse) => console.log(codeResponse),
+        onSuccess: (codeResponse) => console.warn(codeResponse),
         flow: 'auth-code',
     });
 

@@ -32,8 +32,8 @@ export const EventNew: React.FC = () => {
         address: '',
         participantsMin: 0,
         participantsMax: undefined,
-        dateFrom: null, //format(new Date(), DATE_FORMAT)
-        dateTo: null, //format(new Date(), DATE_FORMAT)
+        dateFrom: null, // format(new Date(), DATE_FORMAT)
+        dateTo: null, // format(new Date(), DATE_FORMAT)
     };
 
     const validationSchema = Yup.object().shape({
@@ -58,6 +58,8 @@ export const EventNew: React.FC = () => {
                         )
                         .nullable(true);
                 }
+
+                return null;
             }),
         dateFrom: Yup.number().nullable(true).required('start date is required'),
         dateTo: Yup.number()
@@ -68,12 +70,12 @@ export const EventNew: React.FC = () => {
                         .min(dateFrom, 'End Date must be after Start Date')
                         .nullable(true);
                 }
+
+                return null;
             }),
     });
 
     const handleSubmit = (data: INewEvent) => {
-        console.log('data submit', data);
-
         axios
             .post('http://localhost:3001/events/new', data, {
                 headers: {
@@ -81,13 +83,9 @@ export const EventNew: React.FC = () => {
                 },
             })
             .then((response) => {
-                console.log('response', response);
-
                 if (response.data?.errors?.length) {
-                    console.log('errors');
                     setFormErrors(response.data.errors);
                 } else {
-                    console.log('success');
                     setFormErrors([]);
                     navigate(routes.home);
                 }

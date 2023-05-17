@@ -23,7 +23,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module",
         "project": ["tsconfig.json"],
-        "tsconfigRootDir": "__dirname"
+        "tsconfigRootDir": "."
     },
     "plugins": ["react", "@typescript-eslint", "jsx-expressions"],
     "rules": {

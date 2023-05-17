@@ -34,3 +34,5 @@ export const CustomInput = React.forwardRef<HTMLInputElement, IProps>((props, re
         />
     </div>
 ));
+
+CustomInput.displayName = 'CustomInput';
