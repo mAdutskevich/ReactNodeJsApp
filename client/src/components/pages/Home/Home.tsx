@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { AppContext } from 'contexts/AppContext';
+import { BooksContextProvider } from 'contexts/BooksContext';
 import { DATETIME_FORMAT } from 'constants/constants';
 import { routes } from 'utils/routes';
 import { api } from 'api/axiosSettings';
@@ -48,7 +49,7 @@ export const Home: React.FC = () => {
         value: 'SomeValue',
     });
 
-    const store = React.useMemo(() => ({ state, setState }), [state])
+    const store = React.useMemo(() => ({ state, setState }), [state]);
 
     React.useEffect(() => {
         api(requestApi.getEvents(localStorage.getItem('Authorization')))
@@ -99,9 +100,10 @@ export const Home: React.FC = () => {
                 setState,
             }}> */}
             <AppContext.Provider value={store}>
-                <SomeComponent />
+                <BooksContextProvider>
+                    <SomeComponent />
+                </BooksContextProvider>
             </AppContext.Provider>
-
         </div>
     );
 };
