@@ -8,3 +8,16 @@ The idea of **client** app is to test Vite with typescript and all linters and u
 Client app is quite raw, because I gave all my attention to server app.
 
 I am going to continue working on both apps
+
+## Start
+### Client
+1) Rename '.env.sample' to '.env'
+2) pnpm i
+3) pnpm --filter client start
+
+### Server
+1) Rename '.env.sample' to '.env' in server folder
+2) Setup MySQL database using readme.md in server folder
+2) pnpm i
+3) pnpm --filter server start
+

@@ -1,8 +1,9 @@
 {
-  "name": "react-nodejs-app",
+  "name": "client",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
