@@ -18,8 +18,10 @@ Setup MySQL database:
 
 ## Run the project
 1. Rename '.env.sample' to '.env'
-2. yarn
-3. yarn start
+2. `git submodule init`
+3. `git submodule update`
+4. `yarn`
+5. `yarn start`
 
 ## ToDo
 1. Resolve all 'any' types
