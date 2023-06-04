@@ -47,7 +47,7 @@ if (!fs.existsSync(migrationFilePath)) {
                 return;
             }
 
-            console.log(`Migration file "${migrationFile}" created.`);
+            console.warn(`Migration file "${migrationFile}" created.`);
         },
     );
 }

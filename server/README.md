@@ -21,3 +21,6 @@ CREATE DATABASE mysql_dev;
 1. Rename '.env.sample' to '.env'
 2. yarn
 3. yarn start
+
+## ToDo
+1. Resolve all 'any' types

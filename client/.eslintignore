@@ -2,9 +2,8 @@ node_modules
 dist
 public
 
-.eslintrc.js
 jest.config.js
-stylelint.config.js
+stylelint.config.cjs
 
 **/*.test.ts
 **/*.test.tsx

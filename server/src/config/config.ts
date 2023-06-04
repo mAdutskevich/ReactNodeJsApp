@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 
 const root = path.resolve(__dirname, '../../');
 
-config()
+config();
 
 const appConfig = {
     PROTOCOL: process.env.PROTOCOL,
@@ -11,7 +11,10 @@ const appConfig = {
     JWT_CERT_PATH: path.join(root, process.env.JWT_SECRET_CERT_PATH as string),
     JWT_PUBLIC_CERT_PATH: path.join(root, process.env.JWT_PUBLIC_CERT_PATH as string),
     JWT_REFRESH_CERT_PATH: path.join(root, process.env.JWT_REFRESH_SECRET_CERT_PATH as string),
-    JWT_REFRESH_PUBLIC_CERT_PATH: path.join(root, process.env.JWT_REFRESH_PUBLIC_CERT_PATH as string),
+    JWT_REFRESH_PUBLIC_CERT_PATH: path.join(
+        root,
+        process.env.JWT_REFRESH_PUBLIC_CERT_PATH as string,
+    ),
     GOOGLE_OAUTH2_PATH: path.join(root, process.env.GOOGLE_OAUTH2_PATH as string),
     MYSQL_CONFIG_PATH: path.join(root, process.env.MYSQL_CONFIG_PATH as string),
     TOKEN_LIFETIME: 5,

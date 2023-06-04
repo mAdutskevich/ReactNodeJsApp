@@ -17,6 +17,11 @@ Requests should be checked for negative responses
 Request mechanism should be finished
 
 ## Start
-1) Rename '.env.sample' to '.env'
-2) yarn
-3) yarn start
+1. Rename '.env.sample' to '.env'
+2. yarn
+3. yarn start
+
+## ToDo
+1. Resolve all lint errors.
+2. Refactor themes
+3. Refactor mixins

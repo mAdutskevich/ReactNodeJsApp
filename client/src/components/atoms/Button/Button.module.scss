@@ -10,8 +10,9 @@
     border: 1px solid transparent;
     border-radius: $border-radius-small;
     font-weight: $font-weight-bold;
-    @include transition(all);
     cursor: pointer;
+
+    @include transition(all);
 
     &:hover {
         color: var(--text-button-primary);

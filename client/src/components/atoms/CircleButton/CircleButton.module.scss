@@ -3,6 +3,14 @@
 @import '~styles/themes/dark';
 @import '~styles/themes/light';
 
+$z-level: -1;
+
+.icon {
+    fill: $white;
+    transform: rotate(0deg);
+    transition: transform 0.5s ease-in-out;
+}
+
 .button {
     padding: $size-mini;
     display: flex;
@@ -18,26 +26,11 @@
     transition: all 0.75s ease-in-out;
     cursor: pointer;
 
-    &:hover {
-        background-color: transparent;
-        border: 2px solid $white;
-        box-shadow: none;
-
-        &:before {
-            opacity: 1;
-        }
-
-        .icon {
-            transform: rotate(90deg);
-            transition: transform 0.5s ease-in-out;
-        }
-    }
-
-    &:before {
+    &::before {
         content: '';
         background: linear-gradient(
             45deg,
-            #ff0000,
+            #f00,
             #ff7300,
             #fffb00,
             #48ff00,
@@ -45,13 +38,13 @@
             #002bff,
             #7a00ff,
             #ff00c8,
-            #ff0000
+            #f00
         );
         position: absolute;
         top: -5px;
         left: -5px;
         background-size: 400%;
-        z-index: -1;
+        z-index: $z-level;
         filter: blur($size-medium);
         width: calc(100% + $size-mini);
         height: calc(100% + $size-mini);
@@ -61,12 +54,23 @@
         border-radius: $border-radius-half;
     }
 
-    &:active:after {
-        background: transparent;
+    &:hover {
+        background-color: transparent;
+        border: 2px solid $white;
+        box-shadow: none;
+
+        &::before {
+            opacity: 1;
+        }
+
+        .icon {
+            transform: rotate(90deg);
+            transition: transform 0.5s ease-in-out;
+        }
     }
 
-    &:after {
-        z-index: -1;
+    &::after {
+        z-index: $z-level;
         content: '';
         position: absolute;
         width: 100%;
@@ -75,21 +79,21 @@
         top: 0;
         border-radius: $border-radius-half;
     }
-}
 
-.icon {
-    fill: $white;
-    transform: rotate(0deg);
-    transition: transform 0.5s ease-in-out;
+    &:active::after {
+        background: transparent;
+    }
 }
 
 @keyframes glowing {
     0% {
         background-position: 0 0;
     }
+
     50% {
         background-position: 400% 0;
     }
+
     100% {
         background-position: 0 0;
     }

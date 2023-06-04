@@ -9,8 +9,8 @@
         "build": "rm -rf build && tsc -p tsconfig.json",
         "db:migrate": "sequelize-cli db:migrate",
         "db:migration:create": "ts-node ./src/scripts/migrationCreate.ts",
-        "lint:ts": "./node_modules/.bin/tsc --skipLibCheck --noEmit",
-        "lint:js": "./node_modules/.bin/eslint --max-warnings 0 -f table --ext .ts src/ && yarn lint:ts"
+        "lint:ts": "eslint . --ext .ts,.tsx",
+        "lint:js": "eslint --max-warnings 0 -f table --ext .ts src/ && yarn lint:ts"
     },
     "_moduleAliases": {
         "src": "build/src",
@@ -37,6 +37,7 @@
         "cors": "^2.8.5",
         "date-fns": "2.29.3",
         "dotenv": "16.0.3",
+        "eslint-plugin-react": "7.32.2",
         "express": "4.18.1",
         "google-auth-library": "8.7.0",
         "googleapis": "110.0.0",
