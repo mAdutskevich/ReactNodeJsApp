@@ -20,8 +20,8 @@ router.get(routes.direct, validateToken, async (req, res) => {
             'participantsMax',
             'dateFrom',
             'dateTo',
-            'userCode'
-        ]
+            'userCode',
+        ],
     });
 
     const eventsList: IEvent[] = eventsListData.map((item) => item.dataValues);
@@ -30,16 +30,16 @@ router.get(routes.direct, validateToken, async (req, res) => {
         eventsList.map(async (event) => {
             const author: IUser = await model.users.findOne({
                 where: { code: event.userCode },
-                attributes: ['name', 'surname', 'code']
+                attributes: ['name', 'surname', 'code'],
             });
 
             const eventWithAuthor: IEventWithAuthor = {
                 ...event,
-                author
+                author,
             };
 
             return eventWithAuthor;
-        })
+        }),
     );
 
     res.json(eventsWithAuthors);
@@ -47,19 +47,18 @@ router.get(routes.direct, validateToken, async (req, res) => {
 
 router.post(routes.new, validateToken, async (req, res) => {
     const accessToken: string = req.header(AUTHORIZATION);
-    const decodedToken: IToken = jwt_decode(accessToken);
-    const code = decodedToken.code;
+    const { code }: IToken = jwt_decode(accessToken);
     const user: IUser = await model.users.findOne({ where: { code } });
     let event: IEvent;
 
     if (!user) {
         res.status(401).json({
-            errors: [new RouteError(ErrorCode.UNAUTHORIZED_USER_NOTFOUND)]
+            errors: [new RouteError(ErrorCode.UNAUTHORIZED_USER_NOTFOUND)],
         });
     } else {
         event = {
             ...req.body,
-            userCode: user.code
+            userCode: user.code,
         };
     }
 

@@ -8,17 +8,19 @@ export const tokenVerificationErrorHandler = (err: unknown, res: Response, errCo
     // #### 'JsonWebTokenError' || 'JsonWebTokenError' || 'NotBeforeError'
 
     if (err instanceof Error) {
-        switch (err.name) {
-            case 'TokenExpiredError':
-                return res.status(401).json({
-                    errors: [new RouteError(errCode)],
-                });
-            default:
-                return res.status(401).json({
-                    errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],
-                });
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({
+                errors: [new RouteError(errCode)],
+            });
         }
-    } else {
-        console.warn('Unique error');
+
+        return res.status(401).json({
+            errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],
+        });
     }
+
+    console.warn('Unique error');
+    return res.status(401).json({
+        errors: [new RouteError(ErrorCode.UNIQUE_ERROR)],
+    });
 };

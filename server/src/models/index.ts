@@ -1,4 +1,3 @@
-'use strict';
 import fs from 'fs';
 import * as path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
@@ -10,7 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 const dataBaseConfig = dbConfig[env as keyof IDbConfig];
 const db: any = {};
 
-let sequelize: any = new Sequelize(
+const sequelize = new Sequelize(
     dataBaseConfig.database,
     dataBaseConfig.username,
     dataBaseConfig.password,
@@ -22,9 +21,9 @@ fs.readdirSync(__dirname)
         return file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js';
     })
     .forEach(async (file) => {
-        const model = require(path.join(__dirname, file)).default(sequelize, DataTypes);
-
-        db[model.name] = model;
+        const model = await import(path.join(__dirname, file));
+        const modelDefault = model.default(sequelize, DataTypes);
+        db[modelDefault.name] = modelDefault;
     });
 
 Object.keys(db).forEach((modelName) => {

@@ -22,7 +22,7 @@ export const validateToken = async (req: Request, res: Response, next: () => voi
     try {
         const decodedToken: IToken = jwt_decode(token);
         let isTokenValid: string | JwtPayload | LoginTicket = null;
-        let isTokenExpired: boolean = true;
+        let isTokenExpired = true;
 
         if (decodedToken.exp * 1000 > Date.now()) {
             isTokenExpired = false;
@@ -35,7 +35,7 @@ export const validateToken = async (req: Request, res: Response, next: () => voi
         if (decodedToken.iss === IssuerType.CRDENTIALS) {
             try {
                 isTokenValid = verify(token, jwtPublicCert);
-            } catch (err: any) {
+            } catch (err) {
                 tokenVerificationErrorHandler(err, res, ErrorCode.UNAUTHORIZED_TOKEN_EXPIRED);
             }
         } else if (decodedToken.iss === IssuerType.GOOGLE) {
@@ -45,7 +45,7 @@ export const validateToken = async (req: Request, res: Response, next: () => voi
                 isTokenValid = await googleOauth2Client.verifyIdToken({
                     idToken: token,
                 });
-            } catch (err: any) {
+            } catch (err) {
                 return res.status(401).json({
                     errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],
                 });
@@ -55,6 +55,8 @@ export const validateToken = async (req: Request, res: Response, next: () => voi
         if (isTokenValid && !isTokenExpired) {
             return next();
         }
+
+        return null;
     } catch (err) {
         return res.status(401).json({
             errors: [new RouteError(ErrorCode.UNAUTHORIZED_AUTH_FAILED)],

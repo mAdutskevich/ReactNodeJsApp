@@ -26,7 +26,7 @@
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
         "noEmitHelpers": true,
-        "types": [ "node"],
+        "types": ["node"],
         "target": "es6",
         "lib": ["dom", "esnext"],
         "experimentalDecorators": true,

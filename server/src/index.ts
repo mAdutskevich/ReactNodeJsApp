@@ -16,8 +16,6 @@ app.use('/auth', usersRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(appConfig.PORT, () => {
-        console.log(
-            `Server is running on port: http://localhost:${appConfig.PORT}`
-        );
+        console.warn(`Server is running on port: http://localhost:${appConfig.PORT}`);
     });
 });
